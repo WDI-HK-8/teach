@@ -7,9 +7,9 @@ class CoursesController < ApplicationController
     @course = Course.new(post_params)
 
     if @course.save
-      render json: { message: "400 Bad Request" }, status: :bad_request unless @course.save
-    else
       render :show
+    else
+      render json: { message: "400 Bad Request" }, status: :bad_request
     end
   end
 
