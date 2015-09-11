@@ -15,7 +15,3 @@ development:
 test:
   <<: *default
   database: teachapp_test
-
-production:
-  <<: *default
-  database: db/production.sqlite3
