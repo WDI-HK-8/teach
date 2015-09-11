@@ -7,9 +7,9 @@ class CoursesController < ApplicationController
     @course = Course.new(post_params)
 
     if @course.save
-      # render success in Jbuilder
+      render json: { message: "400 Bad Request" }, status: :bad_request unless @course.save
     else
-      render json: { message: "400 Bad Request" }, status: :bad_request
+      render :show
     end
   end
 
@@ -18,8 +18,12 @@ class CoursesController < ApplicationController
 
     if @course.nil?
       render json: { message: "Cannot find course" }, status: :not_found
-    else
-      @course.update(course_params)
+    else  
+      if @course.update(course_params)
+        render :show
+      else
+        render json: { message: "Cannot find course" }, status: :not_found
+      end
     end
   end
 
@@ -38,7 +42,7 @@ class CoursesController < ApplicationController
       render json: { message: "Cannot find course" }, status: :not_found
     else
       if @course.destroy
-        render json: { message: "Successfully deleted" }, status: :no_content
+        render json: { message: "Successfully deleted" }
       else
         render json: { message: "Unsuccessfully deleted" }, status: :bad_request 
       end
