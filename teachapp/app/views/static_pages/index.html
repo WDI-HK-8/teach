@@ -1,0 +1,14 @@
+<h1>List of all Courses</h1>
+
+<% @courses.each do |course| %>
+  <div>
+    <%= course.id %>
+    <%= course.title %>
+    <%= course.description %>
+    <%= course.image %>
+    <%= course.category %>
+    <%= course.price %>
+    <%= course.video %>
+    <%= course.created_at %>
+  </div>
+<% end %>

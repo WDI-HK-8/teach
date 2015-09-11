@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
 
     if @user.nil?
-      render json: { message: "Cannot find post" }, status: :not_found
+      render json: { message: "Cannot find user" }, status: :not_found
     else
       @user.update(user_params)
     end
@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :pwd, :bio, :instructor)
   end
 
 end
